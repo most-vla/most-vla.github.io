@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="MOST: Memory of Object States and Task Progress for Long-Horizon Mobile Manipulation."
+    />
+    <meta name="theme-color" content="#f2f3f9" />
+    <meta property="og:title" content="MOST — Memory of Object States and Task Progress" />
+    <meta
+      property="og:description"
+      content="Task-state memory for reliable long-horizon mobile manipulation."
+    />
+    <meta property="og:image" content="/assets/fig1-teaser.png" />
+    <title>MOST — Memory of Object States and Task Progress</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <a class="wordmark" href="#top" aria-label="MOST home">MOST<span>·</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#abstract">Abstract</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#robocasa365">Demos</a>
+        <a href="#results">Results</a>
+        <a href="#citation">Citation</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero section-shell">
+          <h1>MOST</h1>
+          <p class="hero-title">Memory of Object States and Task Progress for Long-Horizon Mobile Manipulation</p>
+
+          <div class="author-block" aria-label="Authors and affiliations">
+            <div class="author-list">
+              <span>Diqi He<sup>1,2</sup></span>
+              <span>Jinbang Guo<sup>2</sup></span>
+              <span>Yijun Shen<sup>2,3</sup></span>
+              <span>Zhiwei Yu<sup>2,*</sup></span>
+              <span>Huan Yang<sup>2</sup></span>
+              <span>Dingwen Zhang<sup>1,*</sup></span>
+              <span>Junwei Han<sup>4</sup></span>
+              <span>Zhongyuan Wang<sup>2</sup></span>
+            </div>
+            <div class="affiliation-list">
+              <p><sup>1</sup> Northwestern Polytechnical University</p>
+              <p><sup>2</sup> Beijing Academy of Artificial Intelligence</p>
+              <p><sup>3</sup> East China Normal University</p>
+              <p><sup>4</sup> Chongqing University of Posts and Telecommunications</p>
+              <p class="corresponding"><sup>*</sup> Corresponding authors</p>
+            </div>
+          </div>
+
+          <div class="institution-logos" aria-label="Affiliated institutions">
+            <div><img src="assets/baai-logo.png" alt="Beijing Academy of Artificial Intelligence" /></div>
+            <div><img src="assets/nwpu-logo.png" alt="Northwestern Polytechnical University" /></div>
+            <div><img src="assets/ecnu-logo.png" alt="East China Normal University" /></div>
+            <div><img src="assets/cqupt-logo.png" alt="Chongqing University of Posts and Telecommunications" /></div>
+          </div>
+
+          <div class="hero-actions">
+            <span class="button button-dark is-placeholder" aria-disabled="true">Paper <small>soon</small></span>
+            <span class="button button-light is-placeholder" aria-disabled="true">Code <small>soon</small></span>
+            <span class="button button-light is-placeholder" aria-disabled="true">Data <small>soon</small></span>
+          </div>
+      </section>
+
+      <section id="overview" class="content-section section-shell reveal">
+        <h2 class="section-title"><span>00</span> Overview</h2>
+        <div class="project-video">
+          <video
+            src="assets/most-project-video.mp4"
+            poster="assets/fig1-teaser.png"
+            controls
+            preload="metadata"
+            playsinline
+            aria-label="MOST project overview video"
+          ></video>
+        </div>
+      </section>
+
+      <section id="abstract" class="content-section section-shell reveal">
+        <h2 class="section-title"><span>01</span> Abstract</h2>
+        <div class="abstract-copy">
+          <p>
+            Long-horizon embodied manipulation requires policies to act on information that is no longer visible. Modified objects may leave the field of view, while completed subtasks continue to constrain future actions. Existing approaches extend temporal context through recurrent state updates, test-time training, or storage and retrieval of past observations. As horizons grow, these mechanisms can still leave the policy to infer task state from long, redundant, and viewpoint-dependent visual experience. We argue that long-horizon agents benefit not merely from remembering more, but from remembering task-relevant state changes and progress.
+          </p>
+          <p>
+            We propose Memory of Object States and Task Progress (MOST), a policy-internal memory framework that compresses multi-view observations into temporal tokens. Historical and predictive future tokens are explicitly supervised with object states and subtask progress, structuring memory around what has changed in the world and what has already been accomplished. The resulting memory directly conditions action generation within a single end-to-end policy, without an external planner or retrieval stage. We further introduce RoboCasa-Long, a benchmark of multi-minute, multi-stage mobile manipulation tasks. Across RoboCasa365, RoboCasa-Long, and real-world robot experiments, MOST consistently outperforms Xiaomi-Robotics-1 (XR-1), the previous state-of-the-art model. It raises average success from 65.9% to 72.1% on RoboCasa365, average maximum task progress from 20.83% to 42.22% on RoboCasa-Long, and real-world success from 6.66% to 43.33%. MOST also outperforms a matched visual-history memory variant, showing that effective long-horizon memory depends not only on how much experience is retained, but on whether it preserves decision-relevant progress and world-state changes.
+          </p>
+        </div>
+      </section>
+
+      <section id="teaser" class="content-section section-shell reveal">
+        <h2 class="section-title"><span>02</span> Teaser</h2>
+        <p class="figure-copy teaser-copy">
+          MOST structures policy-internal memory around object states and task progress for long-horizon mobile manipulation. We evaluate it on RoboCasa365, our newly introduced RoboCasa-Long benchmark of multi-minute, multi-stage tasks, and real-world deployment. M-Raw in the plots denotes MOST-Raw, a matched visual-history memory variant without task-state supervision or future prediction. Across these settings, MOST outperforms both the memoryless Xiaomi-Robotics-1 (XR-1) baseline and MOST-Raw.
+        </p>
+        <figure class="paper-figure paper-figure-large">
+          <img src="assets/fig1-teaser.png" alt="MOST teaser covering RoboCasa365, RoboCasa-Long, task-state memory, real-robot deployment and performance" />
+        </figure>
+      </section>
+
+      <section id="pipeline" class="content-section section-shell reveal">
+        <h2 class="section-title"><span>03</span> Pipeline</h2>
+        <div class="pipeline-stack">
+          <article class="pipeline-item">
+            <h3>MOST overview.</h3>
+            <p class="figure-copy">MOST integrates a Vision Language Model, a Memory Expert, and an Action Expert within one end-to-end policy. The Vision Language Model encodes the current observation and instruction. The Memory Expert represents sampled history as object states and task progress, and the Action Expert uses both contexts to generate continuous actions. Task-state supervision is training-only.</p>
+            <figure class="paper-figure paper-figure-large overview-figure">
+              <img src="assets/fig2-overview.png" alt="MOST model overview with Vision Language Model, Action Expert and Memory Expert" />
+            </figure>
+          </article>
+          <article class="pipeline-item">
+            <h3>Memory Expert architecture.</h3>
+            <p class="figure-copy">Historical multi-view observations are encoded into history tokens, and future queries are appended to form the memory sequence. The sequence is processed with block-causal self-attention and conditioned on the instruction through cross-attention. During training, each token predicts its subtask and the state of every relevant object. The output of each Memory Expert layer conditions the corresponding Action Expert layer.</p>
+            <figure class="paper-figure paper-figure-large pipeline-figure">
+              <img src="assets/fig3-pipeline.png" alt="Detailed MOST pipeline with history tokens, block-causal attention, task-state heads and action expert" />
+            </figure>
+          </article>
+        </div>
+      </section>
+
+      <section id="robocasa365" class="content-section section-shell reveal">
+        <h2 class="section-title"><span>04</span> RoboCasa365</h2>
+
+        <div class="demo-split">
+          <h3 class="demo-split-title">Composite-Seen</h3>
+          <div class="demo-grid demo-video-grid">
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/deliver-straw.mp4" controls preload="metadata" playsinline></video><h4>Deliver Straw</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/get-toasted-bread.mp4" controls preload="metadata" playsinline></video><h4>Get Toasted Bread</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/kettle-boiling.mp4" controls preload="metadata" playsinline></video><h4>Kettle Boiling</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/load-dishwasher.mp4" controls preload="metadata" playsinline></video><h4>Load Dishwasher</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/pack-identical-lunches.mp4" controls preload="metadata" playsinline></video><h4>Pack Identical Lunches</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/prepare-coffee.mp4" controls preload="metadata" playsinline></video><h4>Prepare Coffee</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/pre-soak-pan.mp4" controls preload="metadata" playsinline></video><h4>Pre Soak Pan</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/rinse-sink-basin.mp4" controls preload="metadata" playsinline></video><h4>Rinse Sink Basin</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/scrub-cutting-board.mp4" controls preload="metadata" playsinline></video><h4>Scrub Cutting Board</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/searing-meat.mp4" controls preload="metadata" playsinline></video><h4>Searing Meat</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/set-up-cutting-station.mp4" controls preload="metadata" playsinline></video><h4>Set Up Cutting Station</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/stack-bowls-cabinet.mp4" controls preload="metadata" playsinline></video><h4>Stack Bowls Cabinet</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/steam-in-microwave.mp4" controls preload="metadata" playsinline></video><h4>Steam In Microwave</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/stir-vegetables.mp4" controls preload="metadata" playsinline></video><h4>Stir Vegetables</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/store-leftovers-in-bowl.mp4" controls preload="metadata" playsinline></video><h4>Store Leftovers In Bowl</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cs/wash-lettuce.mp4" controls preload="metadata" playsinline></video><h4>Wash Lettuce</h4></article>
+          </div>
+        </div>
+
+        <div class="demo-split">
+          <h3 class="demo-split-title">Composite-Unseen</h3>
+          <div class="demo-grid demo-video-grid">
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/arrange-bread-basket.mp4" controls preload="metadata" playsinline></video><h4>Arrange Bread Basket</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/arrange-tea.mp4" controls preload="metadata" playsinline></video><h4>Arrange Tea</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/bread-selection.mp4" controls preload="metadata" playsinline></video><h4>Bread Selection</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/categorize-condiments.mp4" controls preload="metadata" playsinline></video><h4>Categorize Condiments</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/cutting-tool-selection.mp4" controls preload="metadata" playsinline></video><h4>Cutting Tool Selection</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/garnish-pancake.mp4" controls preload="metadata" playsinline></video><h4>Garnish Pancake</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/gather-tableware.mp4" controls preload="metadata" playsinline></video><h4>Gather Tableware</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/heat-kebab-sandwich.mp4" controls preload="metadata" playsinline></video><h4>Heat Kebab Sandwich</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/make-ice-lemonade.mp4" controls preload="metadata" playsinline></video><h4>Make Ice Lemonade</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/pan-transfer.mp4" controls preload="metadata" playsinline></video><h4>Pan Transfer</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/portion-hot-dogs.mp4" controls preload="metadata" playsinline></video><h4>Portion Hot Dogs</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/recycle-bottles-by-type.mp4" controls preload="metadata" playsinline></video><h4>Recycle Bottles By Type</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/separate-freezer-rack.mp4" controls preload="metadata" playsinline></video><h4>Separate Freezer Rack</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/waffle-reheat.mp4" controls preload="metadata" playsinline></video><h4>Waffle Reheat</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/wash-fruit-colander.mp4" controls preload="metadata" playsinline></video><h4>Wash Fruit Colander</h4></article>
+            <article class="demo-video-card"><video src="assets/robocasa365/cu/weigh-ingredients.mp4" controls preload="metadata" playsinline></video><h4>Weigh Ingredients</h4></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="robocasa-long" class="content-section section-shell reveal">
+        <h2 class="section-title"><span>05</span> RoboCasa-Long</h2>
+        <p class="figure-copy">
+          RoboCasa-Long evaluates memory beyond shorter RoboCasa365 episodes through three multi-minute, multi-stage mobile manipulation tasks. Each task requires navigation across several kitchen work areas, repeated object transfers, and persistent tracking of changes that leave the current view. The benchmark contains 200 demonstrations per task, averaging approximately 3.8 minutes, and evaluates complete task success over 30 rollouts per task.
+        </p>
+
+        <div class="dataset-facts" aria-label="RoboCasa-Long dataset overview">
+          <article><strong>3</strong><span>multi-stage tasks</span></article>
+          <article><strong>200</strong><span>demonstrations per task</span></article>
+          <article><strong>3.8 min</strong><span>average duration</span></article>
+          <article><strong>30</strong><span>evaluation rollouts per task</span></article>
+        </div>
+
+        <div class="long-task-details">
+          <article>
+            <div><h3>PackFruit</h3><span>4.1 min avg.</span></div>
+            <p>Collect and pack all fruit from the microwave counter, dining counter, and stove counter into the tupperware.</p>
+          </article>
+          <article>
+            <div><h3>PrepareBreakfast</h3><span>3.6 min avg.</span></div>
+            <p>Toast the bread, arrange it with milk, and place the apple and banana in the designated bowl.</p>
+          </article>
+          <article>
+            <div><h3>CleanAndStoreAfterMeal</h3><span>3.8 min avg.</span></div>
+            <p>Store food in the freezer, match pantry items near the stove, and move the pan and sponge to the island sink.</p>
+          </article>
+        </div>
+
+        <figure class="paper-figure paper-figure-large long-figure wide-scroll">
+          <img src="assets/fig5-robocasa-long.png" alt="RoboCasa-Long trajectories for PackFruit, PrepareBreakfast, and CleanAndStoreAfterMeal" />
+        </figure>
+
+        <h3 class="demo-split-title long-demo-title">Example rollouts</h3>
+        <div class="demo-grid long-video-grid">
+          <article class="demo-video-card"><video src="assets/robocasa-long/packfruit.mp4" preload="metadata" muted loop autoplay playsinline></video><h4>PackFruit</h4></article>
+          <article class="demo-video-card"><video src="assets/robocasa-long/preparebreakfast.mp4" preload="metadata" muted loop autoplay playsinline></video><h4>PrepareBreakfast</h4></article>
+          <article class="demo-video-card"><video src="assets/robocasa-long/cleanandstoreaftermeal.mp4" preload="metadata" muted loop autoplay playsinline></video><h4>CleanAndStoreAfterMeal</h4></article>
+        </div>
+      </section>
+
+      <section id="real-robot" class="content-section section-shell reveal">
+        <h2 class="section-title"><span>06</span> Real Robot</h2>
+        <p class="figure-copy">
+          Representative successful real-world rollouts on a wheeled manipulator. MOST transfers one banana and stops in the top row. For Pack 3 Bananas, the trajectory continues from the middle row into the bottom row, which is read from right to left, before the robot presses the completion button.
+        </p>
+        <figure class="paper-figure paper-figure-large robot-figure wide-scroll">
+          <img src="assets/fig6-real-robot.png" alt="Galbot G1 real-robot trajectories for packing bananas" />
+        </figure>
+
+        <div class="robot-video-row">
+          <article class="demo-video-card robot-rollout-card">
+            <video src="assets/real-robot/pack-2-bananas.mp4" preload="metadata" muted loop autoplay playsinline></video>
+            <h4>Pack 2 Bananas</h4>
+          </article>
+          <article class="demo-video-card robot-rollout-card">
+            <video src="assets/real-robot/pack-3-bananas.mp4" preload="metadata" muted loop autoplay playsinline></video>
+            <h4>Pack 3 Bananas</h4>
+          </article>
+        </div>
+      </section>
+
+      <section id="results" class="content-section section-shell reveal">
+        <h2 class="section-title"><span>07</span> Results</h2>
+        <div class="performance-stack">
+          <article class="performance-block">
+            <div class="performance-head">
+              <div><h3>RoboCasa365</h3></div>
+              <div class="primary-score"><strong>72.1</strong><span>% average SR</span></div>
+            </div>
+            <div class="method-compare">
+              <div><span>XR-1</span><i style="--score:65.9%"></i><strong>65.9</strong></div>
+              <div><span>MOST-Raw</span><i style="--score:68%"></i><strong>68.0</strong></div>
+              <div class="is-ours"><span>MOST</span><i style="--score:72.1%"></i><strong>72.1</strong></div>
+            </div>
+            <div class="chart-section">
+              <div class="chart-section-title"><h4>All task splits · Success rate</h4><div class="chart-legend"><span class="legend-xr">XR-1</span><span class="legend-raw">MOST-Raw</span><span class="legend-most">MOST</span></div></div>
+              <div class="metrics-chart-grid" data-chart-set="rc365-splits"></div>
+            </div>
+            <div class="chart-section">
+              <div class="chart-section-title"><h4>Composite-Seen · Target-100%</h4><span>All progress-aware metrics</span></div>
+              <div class="metrics-chart-grid" data-chart-set="rc365-seen"></div>
+            </div>
+            <div class="chart-section">
+              <div class="chart-section-title"><h4>Composite-Unseen · Target-100%</h4><span>All progress-aware metrics</span></div>
+              <div class="metrics-chart-grid" data-chart-set="rc365-unseen"></div>
+            </div>
+          </article>
+
+          <article class="performance-block">
+            <div class="performance-head">
+              <div><h3>RoboCasa-Long</h3></div>
+              <div class="primary-score"><strong>42.22</strong><span>% average MP</span></div>
+            </div>
+            <div class="method-compare">
+              <div><span>XR-1</span><i style="--score:20.83%"></i><strong>20.83</strong></div>
+              <div><span>MOST-Raw</span><i style="--score:28.75%"></i><strong>28.75</strong></div>
+              <div class="is-ours"><span>MOST</span><i style="--score:42.22%"></i><strong>42.22</strong></div>
+            </div>
+            <div class="chart-section">
+              <div class="chart-section-title"><h4>Average across three tasks</h4><div class="chart-legend"><span class="legend-xr">XR-1</span><span class="legend-raw">MOST-Raw</span><span class="legend-most">MOST</span></div></div>
+              <div class="metrics-chart-grid" data-chart-set="rc-long"></div>
+            </div>
+          </article>
+
+          <article class="performance-block">
+            <div class="performance-head">
+              <div><h3>Real-World Evaluation</h3></div>
+              <div class="primary-score"><strong>43.33</strong><span>% average SR</span></div>
+            </div>
+            <div class="method-compare">
+              <div><span>XR-1</span><i style="--score:6.66%"></i><strong>6.66</strong></div>
+              <div><span>MOST-Raw</span><i style="--score:36.66%"></i><strong>36.66</strong></div>
+              <div class="is-ours"><span>MOST</span><i style="--score:43.33%"></i><strong>43.33</strong></div>
+            </div>
+            <div class="chart-section">
+              <div class="chart-section-title"><h4>Average across three count-conditioned tasks</h4><div class="chart-legend"><span class="legend-xr">XR-1</span><span class="legend-raw">MOST-Raw</span><span class="legend-most">MOST</span></div></div>
+              <div class="metrics-chart-grid" data-chart-set="real-world"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="citation" class="content-section citation section-shell reveal">
+        <h2 class="section-title"><span>08</span> Citation</h2>
+        <div class="citation-layout">
+          <div class="citation-intro"><p>BibTeX</p></div>
+          <div class="citation-code">
+          <pre id="bibtex">@article{he2026most,
+  title   = {MOST: Memory of Object States and Task Progress
+             for Long-Horizon Mobile Manipulation},
+  author  = {He, Diqi and Guo, Jinbang and Shen, Yijun and
+             Yu, Zhiwei and Yang, Huan and Zhang, Dingwen and
+             Han, Junwei and Wang, Zhongyuan},
+  year    = {2026},
+  note    = {Under review}
+}</pre>
+          <button class="copy-button" type="button" data-copy="bibtex">Copy</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer section-shell">
+      <p><strong>MOST</strong> · Memory of Object States and Task Progress</p>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+  </body>
+</html>
