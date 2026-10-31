@@ -162,6 +162,7 @@ button, summary { font: inherit; }
   min-height: 46px;
   flex: 0 0 auto;
   flex-wrap: nowrap;
+  font-size: var(--type-body);
   white-space: nowrap;
 }
 .hero-actions .button-icon {
