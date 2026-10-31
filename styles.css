@@ -157,7 +157,23 @@ button, summary { font: inherit; }
   text-decoration: none;
 }
 .button small { opacity: 0.58; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
-.button-icon { display: block; width: 17px; height: 17px; flex: 0 0 auto; object-fit: contain; }
+.hero-actions .button {
+  height: 46px;
+  min-height: 46px;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+.hero-actions .button-icon {
+  display: block;
+  width: 17px !important;
+  min-width: 17px;
+  max-width: 17px !important;
+  height: 17px !important;
+  max-height: 17px;
+  flex: 0 0 17px;
+  object-fit: contain;
+}
 .button-dark { background: var(--ink); color: var(--white); }
 .button-light { background: transparent; }
 .is-placeholder { cursor: default; }
