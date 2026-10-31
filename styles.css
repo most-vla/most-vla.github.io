@@ -157,6 +157,7 @@ button, summary { font: inherit; }
   text-decoration: none;
 }
 .button small { opacity: 0.58; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+.button-icon { display: block; width: 17px; height: 17px; flex: 0 0 auto; object-fit: contain; }
 .button-dark { background: var(--ink); color: var(--white); }
 .button-light { background: transparent; }
 .is-placeholder { cursor: default; }
